@@ -17,5 +17,4 @@ script: "./graglew clean build"
 notifications:
   email:
     recipients:
-      - a7557z@naver.com
       - a7557z@gmail.com
