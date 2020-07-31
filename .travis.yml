@@ -14,6 +14,9 @@ cache:
 
 script: "./gradlew clean build"
 
+before_install:
+  - chomd +x gradlew
+
 # CI 실행 완료 시 메일로 알림
 notifications:
   email:
