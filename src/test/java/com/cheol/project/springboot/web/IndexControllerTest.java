@@ -19,7 +19,7 @@ public class IndexControllerTest {
     public void 메인페이지_로딩(){
         String body = this.restTemplate.getForObject("/", String.class);
 
-        Assertions.assertThat(body).contains("게시판");
+        Assertions.assertThat(body).contains("Springboot Webservice");
     }
 
 }
