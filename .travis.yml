@@ -21,13 +21,13 @@ before_deploy:
 
 deploy:
   - provider: s3
-    access_key_id: $AWS_ACCESS_KEY # Travis repo settings에 설정된 값
+    access_key_id: $AWS_ACCESS_KEY
     secret_access_key: $AWS_SECRET_KEY
-    bucket: cheol-springboot-build # s3버킷
+    bucket: cheol-springboot-build
     region: ap-northeast-2
     skip_cleanup: true
-    acl: private # zip파일 접근
-    local_dir: deploy # before_deploy에서 생성한 디렉토리
+    acl: private
+    local_dir: deploy
     wait-until-deployed : true
 
 before_install:
