@@ -64,6 +64,7 @@ public class PostsApiControllerTest {
                 .title(title)
                 .content(content)
                 .author("author")
+                .email("email")
                 .build();
 
         String url = "http://localhost:" + port + "/api/v1/posts";

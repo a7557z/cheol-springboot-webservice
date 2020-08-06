@@ -1,5 +1,7 @@
 package com.cheol.project.springboot.web;
 
+import com.cheol.project.springboot.config.auth.LoginUser;
+import com.cheol.project.springboot.config.auth.dto.SessionUser;
 import com.cheol.project.springboot.service.posts.PostsService;
 import com.cheol.project.springboot.web.dto.PostsResponseDto;
 import com.cheol.project.springboot.web.dto.PostsSaveRequestDto;
@@ -18,8 +20,12 @@ public class PostsApiController {
     }
 
     @PutMapping("/api/v1/posts/{id}")
-    public long update(@PathVariable Long id, @RequestBody PostsUpdateRequestDto requestDto){
-        return postsService.update(id, requestDto);
+    public long update(@PathVariable Long id, @RequestBody PostsUpdateRequestDto requestDto,
+                       @LoginUser SessionUser user){
+        if (requestDto.getEmail().equals(user.getEmail())){
+            return postsService.update(id, requestDto);
+        }
+        return -1;
     }
 
     @GetMapping("/api/v1/posts/{id}")
