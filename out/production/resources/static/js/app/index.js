@@ -49,9 +49,14 @@ var main = {
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(data)
-        }).done(function(){
+        }).done(function(data){
+            if(data == -1){
+            alert('수정 할 수 없습니다.');
+            window.location.href = '/';
+            }else{
             alert('글이 수정되었습니다.');
             window.location.href = '/';
+            }
         }).fail(function(error){
             alert(JSON.stringify(error));
         });

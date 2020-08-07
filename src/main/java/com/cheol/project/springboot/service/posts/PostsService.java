@@ -1,5 +1,6 @@
 package com.cheol.project.springboot.service.posts;
 
+import com.cheol.project.springboot.config.auth.LoginUser;
 import com.cheol.project.springboot.config.auth.dto.SessionUser;
 import com.cheol.project.springboot.domain.posts.Posts;
 import com.cheol.project.springboot.domain.posts.PostsRepository;
@@ -27,13 +28,15 @@ public class PostsService {
 
     @Transactional
     public Long update(Long id, PostsUpdateRequestDto requestDto, SessionUser user) {
-        String email = user.getEmail();
+        Long n = Long.valueOf(-1);
+
         Posts posts = postsRepository.findById(id).orElseThrow(() -> new
                 IllegalArgumentException("해당 게시글이 없습니다. id=" + id));
-        if(email.equals(requestDto.getEmail())) {
+        if(user.getEmail().equals(requestDto.getEmail())) {
             posts.update(requestDto.getTitle(), requestDto.getContent());
+            return id;
         }
-        return id;
+        return n;
     }
 
     public PostsResponseDto findById(Long id) {
