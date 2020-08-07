@@ -17,6 +17,7 @@ var main = {
         var data = {
             title: $('#title').val(),
             author: $('#author').val(),
+            email: $('#email').val(),
             content: $('#content').val()
         };
 
@@ -36,7 +37,8 @@ var main = {
     update : function(){
         var data = {
             title: $('#title').val(),
-            content: $('#content').val()
+            content: $('#content').val(),
+            email: $('#email').val()
         };
 
         var id = $('#id').val();
