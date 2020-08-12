@@ -74,7 +74,7 @@ var main = {
             alert('글이 삭제되었습니다.');
             window.location.href = '/';
         }).fail(function(error){
-            alert('삭제 할 수 없습니다.');
+            alert(JSON.stringify(error));
         });
 
     }
