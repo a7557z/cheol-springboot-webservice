@@ -1,6 +1,5 @@
 package com.cheol.project.springboot.service.posts;
 
-import com.cheol.project.springboot.config.auth.LoginUser;
 import com.cheol.project.springboot.config.auth.dto.SessionUser;
 import com.cheol.project.springboot.domain.posts.Posts;
 import com.cheol.project.springboot.domain.posts.PostsRepository;
@@ -53,10 +52,11 @@ public class PostsService {
     }
 
     @Transactional
-    public void delete(Long id){
+    public void delete(Long id, PostsUpdateRequestDto requestDto, SessionUser user){
         Posts posts = postsRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id=" + id));
-
-        postsRepository.delete(posts);
+        if(user.getEmail().equals(requestDto.getEmail())) {
+            postsRepository.delete(posts);
+        }
     }
 }
