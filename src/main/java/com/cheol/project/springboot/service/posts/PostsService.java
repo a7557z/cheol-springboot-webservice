@@ -52,11 +52,13 @@ public class PostsService {
     }
 
     @Transactional
-    public void delete(Long id, PostsUpdateRequestDto requestDto, SessionUser user){
+    public void delete(Long id, SessionUser user){
         Posts posts = postsRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id=" + id));
-        if(user.getEmail().equals(requestDto.getEmail())) {
+        if(user.getEmail().equals(posts.getEmail())) {
             postsRepository.delete(posts);
+        }else {
+            postsRepository.delete(null);
         }
     }
 }
