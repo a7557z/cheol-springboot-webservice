@@ -72,9 +72,10 @@ var main = {
             contentType: 'application/json; charset=utf-8',
         }).done(function(){
             alert('글이 삭제되었습니다.');
-            window.location.href = '/';
+            window.location.href = '/'  ;
         }).fail(function(error){
-            alert(JSON.stringify(error));
+            alert('삭제 할 수 없습니다.');
+            console.log(JSON.stringify(error));
         });
 
     }
